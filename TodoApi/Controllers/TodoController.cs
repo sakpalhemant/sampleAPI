@@ -103,5 +103,33 @@ namespace TodoApi.Controllers
                 return NotFound();
             }
         }
+
+        HttpPut("{id}")]
+        [ProducesResponseType((int)HttpStatusCode.OK)]
+        [ProducesResponseType((int)HttpStatusCode.NotFound)]
+        [ProducesResponseType((int)HttpStatusCode.BadRequest)]
+        public async Task<ActionResult<Todo>> UpdateTestAsync(int id, Todo todo)
+        {
+            var item = await db.Todos.FindAsync(id);
+            if(item!=null)
+            {
+                TryValidateModel(todo);
+                if (ModelState.IsValid)
+                {
+                    item.Title = todo.Title;
+                    item.IsCompleted = todo.IsCompleted;
+                    await db.SaveChangesAsync();
+                    return Ok(item);
+                }
+                else
+                {
+                    return BadRequest(ModelState);
+                }
+            }
+            else
+            {
+                return NotFound();
+            }
+        }
     }
 }
