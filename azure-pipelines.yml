@@ -5,6 +5,7 @@
 
 trigger:
 - master
+- dev-hemant
 
 pool:
   vmImage: 'windows-latest'
