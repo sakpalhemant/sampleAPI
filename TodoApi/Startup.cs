@@ -39,11 +39,13 @@ namespace TodoApi
             {
                 config.SwaggerDoc("v1", new OpenApiInfo()
                 {
-                    Title="Todo API",
+                    Title = "Todo API",
                     Description = "Todo API operations",
-                    Version="1.0"
+                    Version = "1.0"
                 });
+                config.ResolveConflictingActions(apiDescriptions => apiDescriptions.First()); //This line
             });
+
 
             services.AddCors(config =>
             {
@@ -74,13 +76,18 @@ namespace TodoApi
 
             app.UseSwagger();
 
-            app.UseRouting();           
-            
+            app.UseRouting();
+
             app.UseSwaggerUI(config =>
             {
                 config.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 config.RoutePrefix = "";
             });
+
+            //app.UseSwaggerUI(c =>
+            //{
+            //    c.SwaggerEndpoint("./v1/swagger.json", "My API V1"); //originally "./swagger/v1/swagger.json"
+            //});
 
             app.UseAuthorization();
 

@@ -11,7 +11,7 @@
         "projectName": "TodoApi",
         "projectPath": "C:\\Users\\sakpa\\Source\\Repos\\SampeAPI\\TodoApi\\TodoApi.csproj",
         "packagesPath": "C:\\Users\\sakpa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sakpa\\Source\\Repos\\SampeAPI\\TodoApi\\obj\\",
+        "outputPath": "C:\\Users\\sakpa\\source\\repos\\SampeAPI\\TodoApi\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

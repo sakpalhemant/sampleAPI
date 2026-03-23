@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\sakpa\\source\\repos\\SampeAPI\\TestProject\\TestProject.csproj": {}
+    "C:\\Users\\sakpa\\Source\\Repos\\SampeAPI\\TestProject\\TestProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\sakpa\\source\\repos\\SampeAPI\\TestProject\\TestProject.csproj": {
+    "C:\\Users\\sakpa\\Source\\Repos\\SampeAPI\\TestProject\\TestProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\sakpa\\source\\repos\\SampeAPI\\TestProject\\TestProject.csproj",
+        "projectUniqueName": "C:\\Users\\sakpa\\Source\\Repos\\SampeAPI\\TestProject\\TestProject.csproj",
         "projectName": "TestProject",
-        "projectPath": "C:\\Users\\sakpa\\source\\repos\\SampeAPI\\TestProject\\TestProject.csproj",
+        "projectPath": "C:\\Users\\sakpa\\Source\\Repos\\SampeAPI\\TestProject\\TestProject.csproj",
         "packagesPath": "C:\\Users\\sakpa\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\sakpa\\source\\repos\\SampeAPI\\TestProject\\obj\\",
+        "outputPath": "C:\\Users\\sakpa\\Source\\Repos\\SampeAPI\\TestProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
