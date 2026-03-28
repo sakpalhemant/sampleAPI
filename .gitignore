@@ -1,3 +1,6 @@
 TodoApi/bin/
 TodoApi/obj/
 /.vs
+/TestProject/bin/Debug/net8.0-windows
+/TestProject/obj/Debug/net8.0-windows
+/TestProject/obj

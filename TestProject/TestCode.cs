@@ -1,7 +1,7 @@
 ﻿namespace TestProject
 {
     [TestClass]
-    public sealed class Test1
+    public sealed class TestCode
     {
         [TestMethod]
         public void TestMethod1()
