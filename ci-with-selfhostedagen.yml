@@ -8,7 +8,9 @@ trigger:
 - dev-hemant
 
 pool:
-  vmImage: 'windows-latest'
+  name: agent-docker
+  demands:
+  - Agent.Name -equals agent-docker-local
 
 variables:
   solution: '**/*.sln'
