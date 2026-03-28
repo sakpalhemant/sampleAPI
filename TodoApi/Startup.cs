@@ -31,8 +31,8 @@ namespace TodoApi
 
             services.AddDbContext<TodoContext>(options =>
             {
-                options.UseInMemoryDatabase("TodoDB");
-                //options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
+                //options.UseInMemoryDatabase("TodoDB");
+                options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
             });
 
             services.AddSwaggerGen(config =>
@@ -83,11 +83,6 @@ namespace TodoApi
                 config.SwaggerEndpoint("/swagger/v1/swagger.json", "v1");
                 config.RoutePrefix = "";
             });
-
-            //app.UseSwaggerUI(c =>
-            //{
-            //    c.SwaggerEndpoint("./v1/swagger.json", "My API V1"); //originally "./swagger/v1/swagger.json"
-            //});
 
             app.UseAuthorization();
 
