@@ -10,7 +10,7 @@ trigger:
 pool:
   name: agent-docker
   demands:
-  - Agent.Name -equals agent-docker-local
+  - Agent.Name -equals agent-dokcker-local
 
 variables:
   solution: '**/*.sln'
