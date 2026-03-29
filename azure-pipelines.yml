@@ -8,59 +8,70 @@ trigger:
 - master
 - dev-hemant
 
-pool:
-  vmImage: 'windows-latest'
-
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
   ImageName: 'sakpalhemant/sampleapi:$(Build.BuildId)'
 
-steps:
-- task: NuGetToolInstaller@1
+# This is the docker job 
+jobs:
+- job: Windows
+  pool:
+    vmImage: 'windows-latest'
 
-- task: NuGetCommand@2
-  inputs:
-    restoreSolution: '$(solution)'
+  steps:
+  - task: NuGetToolInstaller@1
+  - task: NuGetCommand@2
+    inputs:
+      restoreSolution: '$(solution)'
 
-- task: VSBuild@1
-  inputs:
-    solution: '$(solution)'
-    msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+  - task: VSBuild@1
+    inputs:
+      solution: '$(solution)'
+      msbuildArgs: '/p:DeployOnBuild=true /p:WebPublishMethod=Package /p:PackageAsSingleFile=true /p:SkipInvalidConfigurations=true /p:PackageLocation="$(build.artifactStagingDirectory)"'
+      platform: '$(buildPlatform)'
+      configuration: '$(buildConfiguration)'
 
-- task: VSTest@2
-  inputs:
-    platform: '$(buildPlatform)'
-    configuration: '$(buildConfiguration)'
+  - task: VSTest@2
+    inputs:
+      platform: '$(buildPlatform)'
+      configuration: '$(buildConfiguration)'
+
+# This is the docker job 
+- job: Linux
+  pool:
+    vmImage: 'ubuntu-latest'
+  steps:
+
+  - task: Docker@2
+    inputs:
+      containerRegistry: docker
+      repository: 'sakpalhemant/sampleAPI'
+      Dockerfile: '**/Dockerfile'
+      buildContext: ' .'
+    displayName: buildAndPush
+
+  - task: Docker@1      
+    inputs:
+      containerregistrytype: 'Container Registry'
+      dockerRegistryEndpoint: 'docker'
+      command: 'Build an image'
+      dockerFile: '**/Dockerfile'
+      imageName: '$(ImageName)'
+      useDefaultContext: false
+      buildContext: ' .'
+    displayName: 'Build the Docker image'
+
+  - task: Docker@1      
+    inputs:
+      containerregistrytype: 'Container Registry'
+      dockerRegistryEndpoint: 'docker'
+      command: 'Push an image'
+      imageName: '$(ImageName)'
+    condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
+    displayName: 'Push the Docker image to Dockerhub'
 
 
-- task: Docker@2
-  displayName: buildAndPush
-  inputs:
-    containerRegistry: docker
-    repository: 'sakpalhemant/sampleAPI'
-    Dockerfile: '**/Dockerfile'
-    buildContext: ' .'
 
-- task: Docker@1      
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'docker'
-    command: 'Build an image'
-    dockerFile: '**/Dockerfile'
-    imageName: '$(ImageName)'
-    useDefaultContext: false
-    buildContext: ' .'
-  displayName: 'Build the Docker image'
 
-- task: Docker@1      
-  inputs:
-    containerregistrytype: 'Container Registry'
-    dockerRegistryEndpoint: 'docker'
-    command: 'Push an image'
-    imageName: '$(ImageName)'
-  condition: and(succeeded(), ne(variables['Build.Reason'], 'PullRequest'))
-  displayName: 'Push the Docker image to Dockerhub'
