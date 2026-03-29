@@ -41,8 +41,8 @@ steps:
   displayName: buildAndPush
   inputs:
     containerRegistry: docker
-    repository: 'sakpalhemant / sampleAPI '
-    Dockerfile: sampleAPI/Dockerfile
+    repository: 'sakpalhemant/sampleAPI'
+    Dockerfile: '**/Dockerfile'
     buildContext: ' .'
 
 - task: Docker@1      
