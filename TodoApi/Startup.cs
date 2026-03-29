@@ -31,8 +31,8 @@ namespace TodoApi
 
             services.AddDbContext<TodoContext>(options =>
             {
-                //options.UseInMemoryDatabase("TodoDB");
-                options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
+                options.UseInMemoryDatabase("TodoDB");
+                //options.UseSqlServer(Configuration.GetConnectionString("SqlConnection"));
             });
 
             services.AddSwaggerGen(config =>
