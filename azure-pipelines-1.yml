@@ -7,7 +7,9 @@ trigger:
 - master
 
 pool:
-  vmImage: 'windows-latest'
+  vmImage: 'windows-2019'
+
+container: mcr.microsoft.com/windows/servercore:ltsc2019
 
 variables:
   solution: '**/*.sln'
@@ -32,9 +34,11 @@ steps:
   inputs:
     platform: '$(buildPlatform)'
     configuration: '$(buildConfiguration)'
+
 - task: Docker@2
   inputs:
     containerRegistry: 'docker-registry'
-    repository: 'sakpalhemant/sampleapi'
-    command: 'buildAndPush'
+    repository: 'sakpalhemant/sampleAPI'
     Dockerfile: '**/Dockerfile'
+    buildContext: ' .'
+  displayName: buildAndPush
