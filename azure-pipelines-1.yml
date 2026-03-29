@@ -5,11 +5,10 @@
 
 trigger:
 - master
+- dev-hemant
 
 pool:
   vmImage: 'windows-2019'
-
-container: mcr.microsoft.com/windows/servercore:ltsc2019
 
 variables:
   solution: '**/*.sln'
