@@ -38,6 +38,6 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'docker'
-    repository: 'sakpalhemant\sampleapi'
+    repository: 'sampleapi'
     command: 'buildAndPush'
     Dockerfile: '**/Dockerfile'
