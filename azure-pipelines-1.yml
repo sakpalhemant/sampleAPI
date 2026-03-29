@@ -8,12 +8,13 @@ trigger:
 - dev-hemant
 
 pool:
-  vmImage: 'windows-2019'
+  vmImage: 'windows-latest'
 
 variables:
   solution: '**/*.sln'
   buildPlatform: 'Any CPU'
   buildConfiguration: 'Release'
+  ImageName: 'sakpalhemant/sampleapi:$(Build.BuildId)'
 
 steps:
 - task: NuGetToolInstaller@1
